@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>버스 노선도 상세 페이지</title>
+</head>
+    <body>
+        <h1 th:text="${bus.busnum}">버스 번호</h1>
+        <p th:text="${bus.route}">버스 노선</p>
+        <!--<a th:href="@{/bus/delete(id=${bus.id})}">삭제</a>-->
+        <a th:href="@{/bus/modify/{id}(id = ${bus.id})}">수정</a>
+    </body>
+</html>

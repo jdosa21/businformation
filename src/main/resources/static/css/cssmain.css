@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+.container {
+      max-width: 1000px; /* 사이트를 축소시켜도 반응형으로 바꿔주기 위해 max-width */
+      margin: 0 auto;
+      box-sizing: border-box;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      }
+header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 1.2rem 0;
+}
+
+header>p {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+header>ul {
+    display: flex;
+}
+
+header>ul>li {
+    list-style-type: none;
+    margin-left: 1.5rem;
+}
+
+header>ul>li>a {
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding-bottom: 5px;
+}
+
+header>ul>li:first-child>a {
+    /*border-bottom: 5px solid
+    black;*/
+}
+
+header>ul>li>a:hover {
+    border-bottom: 5px solid
+    gray;
+}
+
+section {
+    height: 100vh;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+    padding: 1.2rem 0;
+}
+
+footer>ul {
+    display: flex;
+}
+
+footer>ul>li {
+    list-style-type: none;
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding-bottom: 5px;
+}
+
+footer>ul>li>form>input {
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 800;
+    padding-bottom: 1px;
+}
+
+footer>ul>li>span {
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding-bottom: 5px;
+}

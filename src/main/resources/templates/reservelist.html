@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>승하차 예약 확인 및 예약 정보 전송 페이지</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/cssreservelist.css}">
+</head>
+
+<style>
+    table, td, th {
+        border : 1px solid black;
+        border-collapse : collapse;
+    }
+    td, th {
+        text-align : center;
+        vertical-align : middle;
+    }
+
+    a { text-decoration: none; color: black; }
+    a:visited { text-decoration: none; }
+    a:hover { text-decoration: none; }
+    a:focus { text-decoration: none; }
+    a:hover, a:active { text-decoration: none; }
+</style>
+<body>
+    <div class="container">
+        <header>
+            <p>승하차 예약 확인</p>
+            <ul>
+                <li><a href="/">홈</a></li>
+                <li><a href="/bus/list">정류장 검색/예약</a></li>
+                <li><a href="/reserve/list">예약 확인</a></li>
+            </ul>
+        </header>
+        <section>
+        <table>
+            <thead>
+            <tr>
+                <th width="200px">승차 예약 버스</th>
+                <th width="200px">하차 예약 장소</th>
+                <th width="200px">예약 등록 취소</th>
+                <th width="200px">예약 정보 전송</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="reserve: ${list}">
+                <td th:text="${reserve.ri}"></td>
+                <td th:text="${reserve.ro}"></td>
+                <td>
+                    <button type="button" th:onclick="'location.href=\''+ @{/reserve/delete(id=${reserve.id})} + '\''">취소</button>
+                </td>
+                <td>
+                    <form action="http://localhost:8090/board/reserve" method="post">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                        <input name="ri" th:value="${reserve.ri}" type="hidden" placeholder="승차 할 버스 입력해주세요">
+                        <input name="ro" th:value="${reserve.ro}" type="hidden" placeholder="하차 할 장소 입력해주세요">
+                        <button type="submit">예약 정보 전송</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </section>
+
+        <!--<form action="http://localhost:8090/board/reserve" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+            <input name="ri" type="text" placeholder="승차 할 버스 입력해주세요">
+            <input name="ro" type="text" placeholder="하차 할 장소 입력해주세요">
+            <button type="submit">예약 정보 전송</button>
+        </form>-->
+        <footer>
+            <ul>
+                <li>ID : <span sec:authentication="name"></span> <br></li>
+                <!--<li>권한 : <span sec:authentication="authorities"></span> <br></li>-->
+                <li>
+                    <form id="logout" action="/logout" method="POST">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                        <input type="submit" value="로그아웃"/>
+                    </form>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>
